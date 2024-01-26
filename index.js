@@ -4,12 +4,14 @@ var numberOfDrums = document.querySelectorAll(".drum").length;
 for (var i=0; i< numberOfDrums; i++) {
     document.querySelectorAll(".drum")[i].addEventListener("click", function () {
         playSound(this.innerHTML);
+        buttonAnime(this.innerHTML);
     });
 }
 
 // EventListener for pressing key
 document.addEventListener("keydown", function (event) {
     playSound(event.key);
+    buttonAnime(event.key)
 });
 
 // function to play sound based on pressed key or clicked button
@@ -45,4 +47,12 @@ function playSound(whichLetter) {
             break; 
         default: console.log(buttonInnerHTML);    
     }
+}
+// animation to button after eventListener
+function buttonAnime(currentKey) {
+    var activeButton = document.querySelector("." + currentKey);
+    activeButton.classList.add("pressed");
+    setTimeout(function () {
+        activeButton.classList.remove("pressed");
+    }, 100);
 }
